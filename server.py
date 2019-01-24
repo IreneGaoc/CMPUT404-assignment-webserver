@@ -64,7 +64,7 @@ class MyWebServer(socketserver.BaseRequestHandler):
                     resp = "HTTP/1.1 200 OK contents of \n" + "Content-Type: text/html\n" + "\n"
                     final = resp + openfile
                 elif url[-1:] != "/":
-                    resp = "HTTP/1.1 301 Permanently moved to \n" + "Content-Type: text/html\n" + "\n"
+                    resp = "HTTP/1.1 301 Permanently moved \n" + "Content-Type: text/html\n" + "\n"
                     final = resp
                 else:
                     resp = "HTTP/1.1 404 Not Found\n" + "Content-Type: text/plain\n" + "\n"
