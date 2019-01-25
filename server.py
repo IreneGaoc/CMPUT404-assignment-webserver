@@ -59,12 +59,13 @@ class MyWebServer(socketserver.BaseRequestHandler):
                     openfile =  open(abs_path + "index.html").read()
                     resp = "HTTP/1.1 200 OK contents of \n" + "Content-Type: text/html\n" + "\n"
                     final = resp + openfile
-                elif url[-1:] == "/":
+                elif url[-1] == "/":
                     openfile = open(abs_path).read()
                     resp = "HTTP/1.1 200 OK contents of \n" + "Content-Type: text/html\n" + "\n"
                     final = resp + openfile
-                elif url[-1:] != "/":
-                    resp = "HTTP/1.1 301 Permanently moved \n" + "Content-Type: text/html\n" + "\n"
+                elif url[-1] != "/":
+                    relocation = url + '/'
+                    resp = "HTTP/1.1 301 Permanently moved \n" + "Content-Type: text/html\n" + "location:\n "+ relocation+"\n"
                     final = resp
                 else:
                     resp = "HTTP/1.1 404 Not Found\n" + "Content-Type: text/plain\n" + "\n"
